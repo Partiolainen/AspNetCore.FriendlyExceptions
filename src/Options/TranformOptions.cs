@@ -1,9 +1,8 @@
 using AspNetCore.FriendlyExceptions.Transforms.Interfaces;
 
-namespace AspNetCore.FriendlyExceptions.Options
+namespace AspNetCore.FriendlyExceptions.Options;
+
+public class TranformOptions
 {
-    public class TranformOptions
-    {
-        public virtual ITransformsCollection Transforms { get; set; }
-    }
+    public virtual ITransformsCollection Transforms { get; set; }
 }

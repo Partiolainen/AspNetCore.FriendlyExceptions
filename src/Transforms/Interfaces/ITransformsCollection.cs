@@ -1,9 +1,8 @@
 using System;
 
-namespace AspNetCore.FriendlyExceptions.Transforms.Interfaces
+namespace AspNetCore.FriendlyExceptions.Transforms.Interfaces;
+
+public interface ITransformsCollection
 {
-    public interface ITransformsCollection
-    {
-        ITransform FindTransform(Exception exception);
-    }
+    ITransform FindTransform(Exception exception);
 }

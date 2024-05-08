@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
 
-namespace AspNetCore.FriendlyExceptions.Extensions
+namespace AspNetCore.FriendlyExceptions.Extensions;
+
+public static class ApplicationBuilderExtensions
 {
-    public static class ApplicationBuilderExtensions
+    public static void UseFriendlyExceptions(this IApplicationBuilder appBuilder)
     {
-        public static void UseFriendlyExceptions(this IApplicationBuilder appBuilder)
-        {
-            appBuilder.UseMiddleware<FriendlyExceptionsMiddleware>();
-        }
+        appBuilder.UseMiddleware<FriendlyExceptionsMiddleware>();
     }
 }

@@ -5,30 +5,22 @@ using AspNetCore.FriendlyExceptions.Options;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 
-namespace AspNetCore.FriendlyExceptions
+namespace AspNetCore.FriendlyExceptions;
+
+internal class FriendlyExceptionsMiddleware(
+    RequestDelegate next,
+    IOptions<TranformOptions> options
+)
 {
-    internal class FriendlyExceptionsMiddleware
+    public async Task Invoke(HttpContext context)
     {
-        private readonly RequestDelegate _next;
-        private readonly IOptions<TranformOptions> _options;
-
-        public FriendlyExceptionsMiddleware(RequestDelegate next,
-            IOptions<TranformOptions> options)
+        try
         {
-            _next = next;
-            _options = options;
+            await next(context);
         }
-
-        public async Task Invoke(HttpContext context)
+        catch (Exception exception)
         {
-            try
-            {
-                await _next(context);
-            }
-            catch (Exception exception)
-            {
-                await context.HandleExceptionAsync(_options, exception);
-            }
+            await context.HandleExceptionAsync(options, exception);
         }
     }
 }
